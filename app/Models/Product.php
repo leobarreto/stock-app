@@ -31,20 +31,26 @@ class Product extends Model
         return $products;
     }
 
-    public function storeProduct($newProduct)
+    public function storeProduct($newProduct, $id = null)
     {
         $function = new Functions;
         $product = $newProduct;
 
         $product['price'] = floatval(str_replace(',', '.', preg_replace('/[^\d,]/', '', $newProduct['price'])));
-        $product['sku_product'] = $newProduct['_token'];
 
-        $product['image'] = $newProduct['image']->store('products');
+        if ($newProduct['image']) {
+            $product['image'] = $newProduct['image']->store('products');
+        }
 
-        $product = $this->create($product);
+        if (!$id) {
+            $product['sku_product'] = $newProduct['_token'];
+            $product = $this->create($product);
+            $product->sku_product = $function->skugenerate($product['name'], $product['category_id'], $product['id']);
+            $product->update();
+        } else {
+            $product['id'] = $id;
+        }
 
-        $product->sku_product = $function->skugenerate($product['name'], $product['category_id'], $product['id']);
-
-        $product->update();
+        return $product;
     }
 }

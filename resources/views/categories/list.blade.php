@@ -18,7 +18,6 @@
                                             <th scope="col">#</th>
                                             <th scope="col">Nome</th>
                                             <th scope="col">Ações</th>
-                                            <th scope="col"></th>
                                         </tr>
                                     </thead>
                                     <tbody>

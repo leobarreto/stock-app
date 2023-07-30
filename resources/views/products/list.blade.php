@@ -2,6 +2,9 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Produtos') }}
+            <a href="{{ route('products.create') }}" class="text-sm text-gray-900 leading-tight"> 
+                Novo produto
+            </a>
         </h2>
     </x-slot>
 
@@ -53,15 +56,15 @@
                                     <td>{{$product->sku_product}}</td>
                                     <td>
                                         <a href="{{route('products.edit', $product->id)}}"
-                                            class="btn btn-info edit-btn">
-                                            <ion-icon name="create-outline"></ion-icon>
+                                            class="bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded">
                                             Editar
                                         </a>
                                         <form action="{{ route('products.delete', $product->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger delete-btn">
-                                                <ion-icon name="trash-outline"></ion-icon> Deletar
+                                            <button type="submit"
+                                                class="bg-red-500 hover:bg-blue-700 text-white py-1 px-2 rounded">
+                                                Excluir
                                             </button>
                                         </form>
                                     </td>
@@ -70,7 +73,8 @@
                             </tbody>
                         </table>
                         @elseif(!count($categories))
-                        <p>Ainda não existem categorias, É necessário <a href="{{ route('categories.create') }}">cadastrar as categorias</a> antes
+                        <p>Ainda não existem categorias, É necessário <a
+                                href="{{ route('categories.create') }}">cadastrar as categorias</a> antes
                         </p>
 
                         @else

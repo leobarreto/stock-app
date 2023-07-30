@@ -49,9 +49,7 @@ class ProductController extends Controller
 
     public function update(StoreProductRequest $request, $id)
     {
-        $data = $request->validated();
-
-        $data['price'] = floatval(str_replace(',', '.', preg_replace('/[^\d,]/', '', $request->price)));
+        $data = $this->model->storeProduct($request->validated(), $id);
 
         $product = $this->model->findOrFail($id);
 

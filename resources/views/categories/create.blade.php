@@ -10,6 +10,13 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div id="product-create-container" class="col-md-6 offset-md-3">
+                        @if ($errors->any())
+                        <ul class="list-group list-group-error">
+                            @foreach ($errors->all() as $error)
+                            <li class="list-group-item list-group-item-danger">{{ $error}}</li>
+                            @endforeach
+                        </ul>
+                        @endif
                         <form action="{{ route('categories.store') }}" method="POST">
                             @csrf
                             <div class="form-group">

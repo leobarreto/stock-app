@@ -2,7 +2,9 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Usuários') }}
-            <a href="{{ route('users.create') }}">Novo usuário</a>
+            <a href="{{ route('users.create') }}" class="text-sm text-gray-900 leading-tight"> 
+                Novo usuário
+            </a>
         </h2>
     </x-slot>
 
@@ -19,6 +21,7 @@
                                     <th scope="col">Nome</th>
                                     <th scope="col">E-mail</th>
                                     <th scope="col">Ações</th>
+                                    <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -29,13 +32,16 @@
                                     <td>{{$user->email}}</td>
                                     <td>
                                         <a href="{{route('users.edit', $user->id)}}"
-                                            class="bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded">Editar</a>
+                                            class="bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded">
+                                            Editar
+                                        </a>
                                     </td>
                                     <td>
                                         <form action="{{ route('users.delete', $user->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="bg-red-500 hover:bg-blue-700 text-white py-1 px-2 rounded">Excluir</button>
+                                            <button type="submit"
+                                                class="bg-red-500 hover:bg-blue-700 text-white py-1 px-2 rounded">Excluir</button>
                                         </form>
                                     </td>
                                 </tr>

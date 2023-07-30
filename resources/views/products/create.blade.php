@@ -16,7 +16,6 @@
                             <li class="list-group-item list-group-item-danger">{{ $error}}</li>
                             @endforeach
                         </ul>
-
                         @endif
                         <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
